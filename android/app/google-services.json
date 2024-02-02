@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "587890115161",
+    "project_id": "mozz-8f04a",
+    "storage_bucket": "mozz-8f04a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587890115161:android:ffaaf58fbc3b0e05e76748",
+        "android_client_info": {
+          "package_name": "com.example.mozz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXrP26vnh4Bb8Y21-C0ACTtc2WV0DmxJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
