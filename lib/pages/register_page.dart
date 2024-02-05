@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
 
-  RegisterPage({super.key, this.onTap});
+  const RegisterPage({super.key, this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -42,57 +42,57 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Icon(
+            const Icon(
               Icons.message,
               size: 80,
               color: Colors.grey,
             ),
-            Text(
-              "Lets create an account",
+            const Text(
+              "Let`s create an account",
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomTextField(
                 controller: emailController,
                 title: 'Email',
                 obscureText: false),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomTextField(
                 controller: passwordController,
                 title: 'Password',
                 obscureText: true),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomTextField(
                 controller: passwordController2,
                 title: 'Confirm password',
                 obscureText: true),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             CustomButton(
               title: 'Sign Up',
               onTap: signUp,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const  Text(
                   'Already a member?',
                   style: TextStyle(fontSize: 15),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 GestureDetector(

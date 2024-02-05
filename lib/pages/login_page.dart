@@ -36,50 +36,50 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Icon(
+            const  Icon(
               Icons.message,
               size: 80,
               color: Colors.grey,
             ),
-            Text(
+            const  Text(
               "Welcome back",
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomTextField(
                 controller: emailController,
                 title: 'Email',
                 obscureText: false),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomTextField(
                 controller: passwordController,
                 title: 'password',
                 obscureText: true),
-            SizedBox(
+            const  SizedBox(
               height: 25,
             ),
             CustomButton(
               title: 'Sign In',
               onTap: signIn,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const  Text(
                   'Not a member?',
                   style: TextStyle(fontSize: 15),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 GestureDetector(
