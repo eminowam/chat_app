@@ -58,7 +58,9 @@ class _ChatPageState extends State<ChatPage> {
             const Divider(
               thickness: 0.5,
             ),
-            Expanded(child: _buildMessageList()), _buildMessageInput()],
+            Expanded(child: _buildMessageList()),
+            _buildMessageInput()
+          ],
         ),
       ),
     );
@@ -86,34 +88,71 @@ class _ChatPageState extends State<ChatPage> {
   Widget _buildMessageItem(DocumentSnapshot document) {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
-    var alignment = (data['senderId'] == _firebaseAuth.currentUser!.uid)
-        ? Alignment.bottomRight
-        : Alignment.bottomLeft;
+    String? currentUserId = _firebaseAuth.currentUser?.uid;
 
-    return Container(
-      alignment: alignment,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment:
-              (data['senderId'] == _firebaseAuth.currentUser!.uid)
-                  ? CrossAxisAlignment.end
-                  : CrossAxisAlignment.start,
-          // mainAxisAlignment:
-          //     (data['senderId'] == _firebaseAuth.currentUser!.uid)
-          //         ? MainAxisAlignment.end
-          //         : MainAxisAlignment.start,
-          children: [
-            Text(data['senderEmail']),
-            const SizedBox(
-              height: 7,
+    if (currentUserId == null) {
+      return SizedBox(); // Если идентификатор текущего пользователя не определен, просто возвращаем пустой виджет
+    }
+
+    bool isCurrentUser = data['senderIf'] == currentUserId;
+
+    var mainAxisAlignment = isCurrentUser
+        ? MainAxisAlignment.end
+        : MainAxisAlignment.start;
+    var bubbleColor = isCurrentUser ? Colors.green : Colors.grey[300];
+    var textColor = isCurrentUser ? Colors.white : Colors.black;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        mainAxisAlignment: mainAxisAlignment,
+        children: [
+          isCurrentUser ? SizedBox() : _buildAvatar(), // Отображение аватара только для сообщений других пользователей
+          Flexible(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: bubbleColor,
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Text(
+                  //   data['senderEmail'],
+                  //   style: TextStyle(
+                  //     color: Colors.grey[600],
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  const SizedBox(height: 5.0),
+                  Text(
+                    data['message'],
+                    style: TextStyle(color: textColor),
+                  ),
+                ],
+              ),
             ),
-            ChatBubble(message: (data['message']))
-          ],
-        ),
+          ),
+          isCurrentUser ? _buildAvatar() : SizedBox(), // Отображение аватара только для сообщений текущего пользователя
+        ],
       ),
     );
   }
+
+  Widget _buildAvatar() {
+    return CircleAvatar(
+      radius: 16.0,
+      // Здесь можно добавить логику для отображения аватара пользователя
+      // Например, если у вас есть ссылка на аватар пользователя в Firestore, вы можете загрузить его сюда.
+      // Или вы можете использовать иконку по умолчанию.
+      backgroundColor: Colors.grey,
+    );
+  }
+
+
+
 
   Widget _buildMessageInput() {
     return Padding(
